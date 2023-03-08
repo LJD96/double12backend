@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ljd.double12backend.dao.Top10BrowseDao">
+  <resultMap id="BaseResultMap" type="com.ljd.double12backend.vo.Top10Browse">
+    <result column="item_id" jdbcType="INTEGER" property="itemId" />
+    <result column="browse_num" jdbcType="INTEGER" property="browseNum" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ljd.double12backend.vo.Top10Browse">
+    insert into t_top10_browse (item_id, browse_num)
+    values (#{itemId,jdbcType=INTEGER}, #{browseNum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ljd.double12backend.vo.Top10Browse">
+    insert into t_top10_browse
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="browseNum != null">
+        browse_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="browseNum != null">
+        #{browseNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+    <select id="getTop10Browse" resultMap="BaseResultMap">
+      select *
+      from t_top10_browse
+      order by t_top10_browse.browse_num DESC;
+    </select>
+</mapper>

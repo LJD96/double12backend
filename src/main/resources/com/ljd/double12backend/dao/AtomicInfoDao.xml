@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ljd.double12backend.dao.AtomicInfoDao">
+  <resultMap id="BaseResultMap" type="com.ljd.double12backend.vo.AtomicInfo">
+    <result column="pv" jdbcType="BIGINT" property="pv" />
+    <result column="uv" jdbcType="INTEGER" property="uv" />
+    <result column="all_info_num" jdbcType="BIGINT" property="allInfoNum" />
+    <result column="user_num" jdbcType="INTEGER" property="userNum" />
+    <result column="item_num" jdbcType="INTEGER" property="itemNum" />
+    <result column="item_category_num" jdbcType="INTEGER" property="itemCategoryNum" />
+    <result column="browse_num" jdbcType="BIGINT" property="browseNum" />
+    <result column="collect_num" jdbcType="INTEGER" property="collectNum" />
+    <result column="cart_num" jdbcType="INTEGER" property="cartNum" />
+    <result column="buy_num" jdbcType="INTEGER" property="buyNum" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ljd.double12backend.vo.AtomicInfo">
+    insert into t_atomic_info (pv, uv, all_info_num, 
+      user_num, item_num, item_category_num, 
+      browse_num, collect_num, cart_num, 
+      buy_num)
+    values (#{pv,jdbcType=BIGINT}, #{uv,jdbcType=INTEGER}, #{allInfoNum,jdbcType=BIGINT}, 
+      #{userNum,jdbcType=INTEGER}, #{itemNum,jdbcType=INTEGER}, #{itemCategoryNum,jdbcType=INTEGER}, 
+      #{browseNum,jdbcType=BIGINT}, #{collectNum,jdbcType=INTEGER}, #{cartNum,jdbcType=INTEGER}, 
+      #{buyNum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ljd.double12backend.vo.AtomicInfo">
+    insert into t_atomic_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pv != null">
+        pv,
+      </if>
+      <if test="uv != null">
+        uv,
+      </if>
+      <if test="allInfoNum != null">
+        all_info_num,
+      </if>
+      <if test="userNum != null">
+        user_num,
+      </if>
+      <if test="itemNum != null">
+        item_num,
+      </if>
+      <if test="itemCategoryNum != null">
+        item_category_num,
+      </if>
+      <if test="browseNum != null">
+        browse_num,
+      </if>
+      <if test="collectNum != null">
+        collect_num,
+      </if>
+      <if test="cartNum != null">
+        cart_num,
+      </if>
+      <if test="buyNum != null">
+        buy_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pv != null">
+        #{pv,jdbcType=BIGINT},
+      </if>
+      <if test="uv != null">
+        #{uv,jdbcType=INTEGER},
+      </if>
+      <if test="allInfoNum != null">
+        #{allInfoNum,jdbcType=BIGINT},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=INTEGER},
+      </if>
+      <if test="itemNum != null">
+        #{itemNum,jdbcType=INTEGER},
+      </if>
+      <if test="itemCategoryNum != null">
+        #{itemCategoryNum,jdbcType=INTEGER},
+      </if>
+      <if test="browseNum != null">
+        #{browseNum,jdbcType=BIGINT},
+      </if>
+      <if test="collectNum != null">
+        #{collectNum,jdbcType=INTEGER},
+      </if>
+      <if test="cartNum != null">
+        #{cartNum,jdbcType=INTEGER},
+      </if>
+      <if test="buyNum != null">
+        #{buyNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="getAtomicInfo" resultMap="BaseResultMap">
+    select * from t_atomic_info limit 1;
+  </select>
+</mapper>

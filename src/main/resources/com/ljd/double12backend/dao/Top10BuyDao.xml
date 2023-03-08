@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ljd.double12backend.dao.Top10BuyDao">
+  <resultMap id="BaseResultMap" type="com.ljd.double12backend.vo.Top10Buy">
+    <result column="item_id" jdbcType="INTEGER" property="itemId" />
+    <result column="buy_num" jdbcType="INTEGER" property="buyNum" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ljd.double12backend.vo.Top10Buy">
+    insert into t_top10_buy (item_id, buy_num)
+    values (#{itemId,jdbcType=INTEGER}, #{buyNum,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ljd.double12backend.vo.Top10Buy">
+    insert into t_top10_buy
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="buyNum != null">
+        buy_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="buyNum != null">
+        #{buyNum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+    <select id="getTop10Buy" resultMap="BaseResultMap">
+      select *
+      from t_top10_buy
+      order by t_top10_buy.buy_num DESC;
+    </select>
+</mapper>
