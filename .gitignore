@@ -68,3 +68,5 @@ gen/
 logs/
 log
 temp/
+.fastRequest/
+results.xlsx
